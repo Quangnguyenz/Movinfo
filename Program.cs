@@ -21,10 +21,12 @@ namespace MovieProDemo
                                   .CreateScope()
                                   .ServiceProvider
                                   .GetRequiredService<SeedService>();
-            
+
             await dataService.ManageDataAsync();
 
             host.Run();
+
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
