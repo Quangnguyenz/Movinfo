@@ -11,7 +11,7 @@ namespace MovieProDemo.Models.Database
 {
     public class Movie
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int MovieId { get; set; }
         public string Title { get; set; }
         public string TagLine { get; set; }
@@ -36,6 +36,9 @@ namespace MovieProDemo.Models.Database
         [NotMapped]
         [Display(Name = "Poster Image")]
         public IFormFile PosterFile { get; set; }
+
+        [NotMapped]
+        public IFormFile BackdropFile { get; set; }
 
         public ICollection<MovieCollection> MovieCollections { get; set; } = new HashSet<MovieCollection>();
         public ICollection<MovieCast> Cast { get; set; } = new HashSet<MovieCast>();
