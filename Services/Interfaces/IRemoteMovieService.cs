@@ -9,8 +9,8 @@ namespace MovieProDemo.Services.Interfaces
 {
     public interface IRemoteMovieService
     {
-        Task<MovieDetail> MovidDetailAsync(int id);
-        Task<MovieSearch> SearchMovieAsync(MovieCategory cateory, int count);
+        Task<MovieDetail> MovieDetailAsync(int id);
+        Task<MovieSearch> SearchMoviesAsync(MovieCategory cateory, int count);
         Task<ActorDetail> ActorDetailAsync(int id);
     }
 }

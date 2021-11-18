@@ -59,7 +59,7 @@ namespace MovieProDemo.Services
             return actorDetail;
         }
 
-        public async Task<MovieDetail> MovidDetailAsync(int id)
+        public async Task<MovieDetail> MovieDetailAsync(int id)
         {
             //Step 1: Setup a defaul instance of MovieSearch 
             MovieDetail movieDetail = new();
@@ -92,7 +92,7 @@ namespace MovieProDemo.Services
             return movieDetail;
         }
 
-        public async Task<MovieSearch> SearchMovieAsync(MovieCategory cateory, int count)
+        public async Task<MovieSearch> SearchMoviesAsync(MovieCategory cateory, int count)
         {
             //Step 1: Setup a defaul instance of MovieSearch 
             MovieSearch movieSearch = new();
