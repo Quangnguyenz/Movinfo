@@ -12,6 +12,12 @@ namespace MovieProDemo.Services
     public class BasicImageService : IImageService
     {
         private readonly IHttpClientFactory _httpClient;
+
+        public BasicImageService(IHttpClientFactory httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
         public string DecodeImage(byte[] poster, string contenType)
         {
             if (poster == null) return null;

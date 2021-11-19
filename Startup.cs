@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +9,6 @@ using MovieProDemo.Data;
 using MovieProDemo.Models.Settings;
 using MovieProDemo.Services;
 using MovieProDemo.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieProDemo
 {
@@ -37,6 +31,9 @@ namespace MovieProDemo
 
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddRazorPages();
+
             services.AddControllersWithViews();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -49,7 +46,7 @@ namespace MovieProDemo
 
             services.AddSingleton<IImageService, BasicImageService>();
 
-            services.AddScoped<IDataMappingService, TMDBDataMappingService>();
+            services.AddScoped<IDataMappingService, TMDBMappingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

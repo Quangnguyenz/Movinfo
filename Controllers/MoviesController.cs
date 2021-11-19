@@ -16,7 +16,7 @@ namespace MovieProDemo.Controllers
     public class MoviesController : Controller
     {
         private readonly AppSettings _appSettings;
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly IImageService _imageService;
         private readonly IRemoteMovieService _tmdbMovieService;
         private readonly IDataMappingService _tmdbMappingService;

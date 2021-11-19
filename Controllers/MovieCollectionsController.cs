@@ -34,10 +34,40 @@ namespace MovieProDemo.Controllers
             var movieIdsNotInCollection = allMoviesIds.Except(movieIdsInCollection);
 
             var moviesInCollection = new List<Movie>();
-
             movieIdsInCollection.ForEach(movieId => moviesInCollection.Add(_context.Movie.Find(movieId)));
+            ViewData["IdsInCollection"] = new MultiSelectList(moviesInCollection, "Id", "Title");
+
+            var moviesNotInCollection = await _context.Movie.AsNoTracking().Where(m => movieIdsNotInCollection.Contains(m.Id)).ToListAsync();
+            ViewData["IdsNotInCollection"] = new MultiSelectList(moviesNotInCollection, "Id", "Title");
 
             return View();
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(int id, List<int> idsInCollection)
+        {
+            var oldRecords = _context.MovieCollection.Where(c => c.CollectionId == id);
+            _context.MovieCollection.RemoveRange(oldRecords);
+            await _context.SaveChangesAsync();
+
+            if (idsInCollection != null)
+            {
+                int index = 1;
+                idsInCollection.ForEach(movieId =>
+                {
+                    _context.Add(new MovieCollection()
+                    {
+                        CollectionId = id,
+                        MovieId = movieId,
+                        Order = index++
+                    });
+                });
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
