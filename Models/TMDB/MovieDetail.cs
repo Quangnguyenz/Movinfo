@@ -126,7 +126,7 @@ namespace MovieProDemo.Models.TMDB
         public string certification { get; set; }
         public string iso_639_1 { get; set; }
         public string note { get; set; }
-        public DateTime release_date { get; set; }
+        public string release_date { get; set; }
         public int type { get; set; }
     }
 

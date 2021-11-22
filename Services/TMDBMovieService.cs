@@ -52,7 +52,7 @@ namespace MovieProDemo.Services
             if (response.IsSuccessStatusCode)
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
-                var dcjs = new DataContractJsonSerializer(typeof(MovieSearch));
+                var dcjs = new DataContractJsonSerializer(typeof(ActorDetail));
                 actorDetail = dcjs.ReadObject(responseStream) as ActorDetail;
             }
 
@@ -85,7 +85,7 @@ namespace MovieProDemo.Services
             if (response.IsSuccessStatusCode)
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
-                var dcjs = new DataContractJsonSerializer(typeof(MovieSearch));
+                var dcjs = new DataContractJsonSerializer(typeof(MovieDetail));
                 movieDetail = dcjs.ReadObject(responseStream) as MovieDetail;
             }
 
